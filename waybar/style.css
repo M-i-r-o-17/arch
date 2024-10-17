@@ -1,0 +1,74 @@
+* {
+	font-family: "JetBrains Mono", Roboto, Helvetica, Arial, sans-serif;
+ 	font-size: 18px;
+}
+
+/* Основаная панель, вся целиком */
+
+window#waybar {
+	background-color: rgba(26,27,38,0);
+	border-radius: 13px;
+	transition-property: background-color;
+	transition-duration: 0.5s;
+}
+
+/* Панели Лево Центр Право */
+.modules-right, .modules-left, .modules-center {
+	background-color: rgba(25,26,38,0);
+	border-radius: 15px;
+}
+
+/* Настройка модулей */
+#custom-os_button, #custom-power_button, #window, #workspaces,
+#clock, #cpu, #memory, #temperature, #network, #pulseaudio,
+#custom-media {
+	background-color: rgba(25, 26, 38, 0.75);
+
+	padding: 5px 10px;
+	margin: 0 5px;
+	border: 1px solid #14b8a6;
+	border-radius: 15px;
+}
+#window {
+	min-width: 350px;
+}
+button {
+  box-shadow: inset 0 -3px transparent;
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#pulseaudio:hover {
+  background-color: @surface2;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: @rosewater;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: @rosewater;
+  color: @base;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#mode {
+  background-color: #64727d;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
