@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=$(shuf -i 1-372 -n 1)
+name=$(shuf -i 1-374 -n 1)
 
 wallpaper=$(find $HOME/Изображения/Wallpaper -type f -name "$name.*" -print)
 

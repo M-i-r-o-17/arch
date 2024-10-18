@@ -1,0 +1,163 @@
+//####################################################################
+//##                                                                ##
+//## Waybar настроийки отображение                                  ##
+//##                                                                ##
+//## Автор: M_i_r_o_17 | https://github.com/m-i-r-o-17              ##
+//##                                                                ##
+//## Референс: https://github.com/Alexays/Waybar/wiki/Configuration ##
+//##                                                                ##
+//####################################################################
+
+{
+	//########################
+	//##                    ##
+	//## Основные настройки ##
+	//##                    ##
+	//########################
+
+	"position": "top",  // Прикрепляем док к верху
+	"margin-top" : 2,   // Отступ с верху
+    	"margin-left": 20,  // Отступ от левого края
+    	"margin-right": 20, // Отступ от правого края
+    	"height" : 40,      // Высота панели
+
+	//#######################
+	//##                   ##
+	//## Настройка панелей ##
+	//##                   ##
+	//#######################
+	
+	// Панель слева
+	"modules-left": [
+		"custom/os_button",
+      		"hyprland/window",
+		"custom/media"
+    	],
+	
+	//Панель по центру
+    	"modules-center": [
+      		"hyprland/workspaces",
+    	],
+	
+	//Панель справа
+    	"modules-right": [
+		"tray",
+    		"hyprland/language",
+    		"pulseaudio",
+    		"network",
+    		"clock",
+		"custom/power_button",
+    	],
+
+	//#######################
+	//##                   ##
+	//## Настройка модулей ##
+	//##                   ##
+	//#######################
+	"custom/media" : {
+    		"format"                     : "{0} {1}",
+		"rewrite"                    : {
+                        "" : "{0} Не воспроизводится аудио"
+                },
+    		"escape"                     : true,
+    		"return-type"                : "json",
+    		"max-length"                 : 35,
+    		"on-click"                   : "playerctl play-pause",
+    		"on-click-right"             : "playerctl stop",
+    		"smooth-scrolling-threshold" : 10,
+    		"on-scroll-up"               : "playerctl next",
+    		"on-scroll-down"             : "playerctl previous",
+    		"exec"                       : "python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+	},
+    	"custom/os_button" : {
+		"format"   : "✡︎",
+		"on-click" : "wofi --show drun",
+		"tooltip"  : false
+    	},
+
+    	"custom/power_button" : {
+		"format"   : "⏻",
+		"on-click" : "wlogout",
+		"tooltip"  : false
+    	},
+
+    	"hyprland/window" : {
+      		"format"            : "{}",
+      		"max-length"        : 30,
+      		"rewrite"           : {
+        		"" : "Hyprland"
+      		},
+      		"separate-outputs" : true,
+    	},
+
+    	"hyprland/workspaces" : {
+     		"format"                 : "{icon}",
+      		"on-click"               : "activate",
+      		"format-icons"           : {
+       	 		"active" : " ",
+			"6"      : "♫",
+			"7"	 : "✉️",
+      		},
+      		"sort-by-number"        : true,
+      		"persistent-workspaces" : {
+        		"*" : 7,
+      		},
+    	},
+
+	"hyprland/language": {
+        	"format"    : "{}",
+        	"format-en" : "ENG",
+        	"format-ru" : "РУС",
+    	},
+
+	"tray" : {
+    		"icon-size" : 21,
+    		"spacing"   : 10,
+	},
+	
+    	"clock" : {
+      		"tooltip-format" : "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      		"format-alt"     : "{:%Y-%m-%d}"
+    	},
+
+    	"cpu" : {
+      		"format"  : "{usage}%",
+      		"tooltip" : false
+    	},
+
+    	"memory" : {
+ 	     "format" : "{}% "
+    	},
+
+    	"temperature" : {
+      		"critical-threshold" : 80,
+      		"format"             : "{icon} {temperatureC}°C",
+      		"format-icons"       : ["", "", ""]
+    	},
+
+   
+    	"network" : {
+      		"format-wifi"         : "  {signalStrength}%",
+      		"format-ethernet"     : "{cidr} ",
+      		"tooltip-format"      : "{ipaddr} via {gwaddr} ",
+      		"format-linked"       : "{ifname} (No IP) ",
+      		"format-disconnected" : " ⚠ ",
+    	},
+
+    	"pulseaudio" : {
+      		"format"                 : "{icon} {volume}%",
+      		"format-bluetooth"       : "{volume}% {icon} {format_source}",
+      		"format-bluetooth-muted" : " {icon} {format_source}",
+      		"format-muted"           : " {format_source}",
+      		"format-icons"           : {
+        		"headphone"  : "",
+        		"hands-free" : "",
+        		"headset"    : "",
+        		"phone"      : "",
+        		"portable"   : "",
+        		"car"        : "",
+        		"default"    : ["🔊", "🔊", "🔊"]
+      		},
+      		"on-click": "pavucontrol"
+    	},
+}
